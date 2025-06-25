@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+    let search = <%- JSON.stringify(search) %>;
+    let listings = <%- JSON.stringify(listings) %>;
+</script>
+<body>
+    <div class="container mt-3 mb-5">
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 mt-2">
+            <%
+              const lowerSearch = search.toLowerCase();
+              let foundResults = false; // Flag to check if any listings match
+              for (let list of listings) {
+                const title = list.title?.toLowerCase();
+                const location = list.location?.toLowerCase();
+                const country = list.country?.toLowerCase();
+                const price = list.price?.toString().toLowerCase();
+            %>
+              <%if ( title?.includes(lowerSearch) || location?.includes(lowerSearch) || country?.includes(lowerSearch) || price?.includes(lowerSearch)){ %>
+                <div class="col">
+                  <div class="card h-100 shadow-sm">
+                    <a href="/listings/<%= list._id %>" class="listing-link">
+                      <img src="<%= list.image.url %>" class="card-img-top" alt="Listing Image">
+                      <div class="card-body" style="color: black;">
+                        <p class="card-text">
+                          <b><%= list.title %></b><br>
+                          ₹<%= list.price.toLocaleString("en-IN") %>/night
+                          <i class="tax-info"> &nbsp; +15% GST</i>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <% foundResults = true; %>
+              <% } %>
+            <% } %>
+            <% if (!foundResults) { %>
+                <div class="col-12 text-center my-5">
+                    <h3>No listings found matching your search: "<%= search %>"</h3>
+                    <p>Try a different keyword or browse all listings.</p>
+                    <a href="/listings" class="btn btn-primary mt-3">Browse All Listings</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+<script>
+    // This script should ideally be in a separate .js file, but keeping it here for quick testing
+    // if your script.js doesn't already handle it.
+    let taxswitch = document.getElementById("switchCheckDefault");
+    if (taxswitch) { // Check if the switch exists on this page
+        taxswitch.addEventListener("click", () => {
+            let taxinfo = document.getElementsByClassName("tax-info");
+            for (let info of taxinfo) {
+                if (info.style.display !== "inline") { // Use !== for strict comparison
+                    info.style.display = "inline";
+                } else {
+                    info.style.display = "none";
+                }
+            }
+        });
+    }
+</script>

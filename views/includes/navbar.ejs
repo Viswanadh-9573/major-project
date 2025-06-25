@@ -1,0 +1,52 @@
+
+<nav class="navbar navbar-expand-md bg-body-tertiary sticky-top border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-solid fa-map-location-dot" style="color: #fe424d;"></i>
+        </a>
+
+        <form class="d-flex input-group search-container-mobile" method="get" action="/listings/q">
+            <input class="form-control search-input" type="search" name="search-result" placeholder="Search" aria-label="Search">
+            <button class="btn btn-search" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i> </button>
+        </form>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0 d-none d-md-block"></ul>
+
+            <div class="search-form-desktop-wrapper d-none d-md-flex">
+                <form class="d-flex input-group search-form-desktop" method="get" action="/listings/q">
+                    <input class="form-control search-input" type="search" name="search-result" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-search" type="submit">Search</button>
+                </form>
+            </div>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/listings">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/listings/new">Add New Listing</a>
+                </li>
+
+                <% if (!curruser) { %>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/signup">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/login">Login</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/logout">Logout</a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

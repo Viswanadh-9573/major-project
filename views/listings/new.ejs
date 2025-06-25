@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+        
+        
+        <div class="row">
+            <div class="col-8 offset-2">
+                  <h2 class="major-headings">add new listing</h2> <br>
+        <form  method="post"action="/listings" novalidate  class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">   
+                 <lAbel for="title" class="form-label">title</lAbel> 
+                 <input type="text" name="listing[title]" class="form-control" placeholder="enter title" required >
+                 <div class="invalid-feedback">please enter a valid title</div>
+            </div>
+           <div  class="mb-3">
+                    <lAbel for="description" class="form-label">description</lAbel> 
+                    <textarea name="listing[description]"  rows="5" cols="20" class="form-control"  required ></textarea>
+                     <div class="invalid-feedback">please enter a valid description</div>
+           </div>
+            <div  class="mb-3">
+             <lAbel for="image" class="form-label"> upload image</lAbel> 
+              <input type="file" name="image"  class="form-control" placeholder="enter image url" required>
+           </div>
+           <div class="row">
+              <div class="mb-3 col-md-4">
+                   <lAbel for="price" class="form-label">price</lAbel> 
+                   <input type="number" name="listing[price]"  class="form-control" placeholder="enter price"  required>
+                    <div class="invalid-feedback">please enter a valid price</div>
+            </div>
+            
+             <div  class="mb-3 col-md-8">
+             <lAbel for="country" class="form-label">country</lAbel> 
+              <input type="text" name="listing[country]"  class="form-control" placeholder=" enter country"  required>
+               <div class="invalid-feedback">please enter a valid country</div>
+           </div>
+           </div>
+          
+            <div  class="mb-3">
+                   <lAbel for="location" class="form-label">location</lAbel> 
+                   <input type="text" name="listing[location]"  class="form-control" placeholder=" enter location"  required>
+                    <div class="invalid-feedback">please enter a valid location</div>
+            </div>
+           <br>
+      
+                  <button class="btn btn-dark">new</button>
+                  <br><br>
+        </form>
+        </div>
+        </div>
+</body>
