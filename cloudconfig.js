@@ -1,4 +1,4 @@
-const Cloudinary = require("Cloudinary").v2;
+const Cloudinary = require("cloudinary").v2;
 const {CloudinaryStorage} =require("multer-storage-cloudinary");
 const { param } = require("./routes/listing");
 
