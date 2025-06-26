@@ -81,8 +81,8 @@ app.use((req,res,next)=>{
    next();
 })
 
-app.get("/",()=>{
-   res.send("welocome to my web page");
+app.get("/",(req,res)=>{
+    res.render("welcome.ejs")
 })
 
 app.use("/listings",listings);
