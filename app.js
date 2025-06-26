@@ -82,7 +82,7 @@ app.use((req,res,next)=>{
 })
 
 app.get("/",(req,res)=>{
-    res.render("listinsg/welcome.ejs")
+    res.render("listings/welcome.ejs")
 })
 
 app.use("/listings",listings);
