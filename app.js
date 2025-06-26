@@ -81,6 +81,9 @@ app.use((req,res,next)=>{
    next();
 })
 
+app.get("/",()=>{
+   res.send("welocome to my web page");
+})
 
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
