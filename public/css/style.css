@@ -4,12 +4,9 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    /* overflow-x: hidden; */ /* Uncomment if you experience horizontal scroll issues */
-    /* min-height, display, flex-direction are now handled by the outer div in boilerplate.ejs, so removed from here if present */
-}
+     }
 
-/* For main content areas using .container, this handles flex growing */
-.container {
+ .container {
     flex: 1; /* Allows the main content areas to expand */
 }
 
@@ -29,7 +26,19 @@ html, body {
     color: #222222 !important;
 }
 
-/* --- Filter Bar Styles (from home.ejs) --- */
+
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 1.5rem 0;
+    color: #6c757d;
+    width: 100%;
+  
+}
+
+
+
+
 #filters {
     display: flex;
     flex-wrap: nowrap;
@@ -168,16 +177,17 @@ html, body {
 /* Mobile styles below 768px */
 @media (max-width: 767.98px) {
     .navbar .container-fluid {
-        display: flex; /* Essential for flexible arrangement */
-        justify-content: space-between; /* Distribute items with space between */
-        align-items: center; /* Vertically align items */
+        /* Keep these for mobile: */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding-right: 15px;
         padding-left: 15px;
     }
 
     .search-container-mobile { /* This is your mobile search form with input-group */
-        flex-grow: 1; /* Allow it to take available space */
-        margin: 0 0.5rem; /* Add horizontal spacing */
+        flex-grow: 1;
+        margin: 0 0.5rem;
         max-width: 220px; /* Adjust if needed, based on screenshot this looks good */
     }
 
@@ -194,7 +204,7 @@ html, body {
         border-bottom-left-radius: 0 !important;
         padding: 0.4rem 0.8rem;
         width: 40px; /* Keep button compact */
-        display: flex; /* For centering the icon */
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -241,20 +251,30 @@ html, body {
 
 /* Desktop styles from 768px and up */
 @media (min-width: 768px) {
-    .search-container-mobile { /* Hide mobile search on desktop */
-        display: none !important;
+    .navbar .container-fluid {
+        display: flex;
+        /* Updated: Use space-between to push items to ends, and align them center */
+        justify-content: space-between;
+        align-items: center;
+        /* Removed padding-right/left here as it was redundant with container-fluid's default */
     }
 
-    .desktop-search-wrapper { /* Ensure this is visible and acts as flex container on desktop */
+    .search-container-mobile {
+        display: none !important; /* Hide mobile search on desktop */
+    }
+
+    /* Ensure this is visible and acts as flex container on desktop */
+    .search-form-desktop-wrapper {
         display: flex !important;
-        flex-grow: 1; /* Allow it to take available space */
-        justify-content: center; /* Center the search bar */
+        flex-grow: 1; /* Allows it to take available horizontal space */
+        justify-content: center; /* Centers the search bar within its wrapper */
         align-items: center;
-        padding: 0 1rem;
+        padding: 0 1rem; /* Add some horizontal padding */
+        /* Removed ms-auto from here. It was conflicting with justify-content: center. */
     }
 
     .search-form-desktop {
-        max-width: 400px;
+        max-width: 400px; /* Control the max width of the search bar */
         width: 100%;
         display: flex;
     }
@@ -276,7 +296,7 @@ html, body {
 
     .navbar-nav {
         flex-direction: row; /* Ensure nav items are horizontal on desktop */
-        margin-left: auto !important; /* Push nav items to the far right */
+        margin-left: auto !important; /* Pushes nav items to the far right */
         width: auto;
         padding: 0;
     }
@@ -287,61 +307,4 @@ html, body {
     .navbar-nav .nav-link {
         padding: 0.5rem 0.5rem;
     }
-}
-
-/* --- Footer Specific Styles --- */
-.footer {
-    background-color: #f8f9fa;
-    border-top: 1px solid #e9ecef;
-    padding: 1.5rem 0;
-    color: #6c757d;
-    width: 100%;
-    margin-top: auto; /* Pushes footer to the bottom */
-}
-
-.f-info {
-    text-align: center;
-    min-height: 8rem;
-    background-color: #ebebeb;
-    padding: 1rem 0;
-}
-
-.f-info-links a {
-    text-decoration: none;
-    color: #222222;
-    margin-right: 10px;
-}
-
-.f-info-links a:hover {
-    text-decoration: underline;
-}
-
-.f-info-links,.f-info-socials,
-.f-info-brand {
-    margin: 0.5rem 1rem;
-}
-
-.f-info-socials i {
-    font-size: 1.5rem;
-    margin-right: 1.5rem;
-}
-
-@media (max-width: 767.98px) {
-    .f-info-links,
-    .f-info-socials,
-    .f-info-brand {
-        width: 100%;
-        margin: 0.5rem 0;
-    }
-}
-
-/* --- General Link Styling --- */
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #fe424d;
-    text-decoration: none;
-}
+ }
