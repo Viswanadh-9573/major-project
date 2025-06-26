@@ -1,13 +1,11 @@
 /* Global styles - crucial for eliminating unwanted spacing and ensuring full width */
 html, body {
-    font-family: "Plus Jakarta Sans" !important; /* From your home.ejs */
+    font-family: "Plus Jakarta Sans" !important;
     margin: 0;
     padding: 0;
     width: 100%;
     /* overflow-x: hidden; */ /* Uncomment if you experience horizontal scroll issues */
-    min-height: 100vh; /* Ensure body takes at least the full viewport height */
-    display: flex; /* Enable Flexbox for main layout control */
-    flex-direction: column; /* Stack children (nav, main content, footer) vertically */
+    /* min-height, display, flex-direction are now handled by the outer div in boilerplate.ejs, so removed from here if present */
 }
 
 /* For main content areas using .container, this handles flex growing */
@@ -17,17 +15,17 @@ html, body {
 
 /* Navbar specific styles */
 .navbar {
-    height: 5rem; /* From your home.ejs */
-    background-color: white; /* From your home.ejs */
-    /* Add any other custom navbar styles here. */
+    height: 5rem;
+    background-color: white;
+    /* You had sticky-top on the navbar in navbar.ejs. If you want the whole navbar to scroll, remove sticky-top from the <nav> tag. If you want it sticky, keep it. */
 }
 
-.fa-map-location-dot { /* From your home.ejs */
+.fa-map-location-dot {
     color: #fe424d;
     font-size: 2rem;
 }
 
-.nav-link { /* From your home.ejs */
+.nav-link {
     color: #222222 !important;
 }
 
@@ -43,15 +41,16 @@ html, body {
     padding: 1rem 2rem; /* Consistent padding */
     border-bottom: 1px solid #e0e0e0;
     white-space: nowrap; /* Prevents text wrap within filters */
+    /* IMPORTANT: Ensure no 'position: sticky' or 'position: fixed' here, as sticky-top was removed from home.ejs */
 }
 
 .filter {
     text-align: center;
-    min-width: 60px; /* Ensures minimum width for each filter */
+    min-width: 60px;
     opacity: 0.7;
     transition: opacity 0.2s ease-in-out;
-    flex-shrink: 0; /* Prevents filters from shrinking too much */
-    padding-bottom: 5px; /* Added spacing */
+    flex-shrink: 0;
+    padding-bottom: 5px;
 }
 
 .filter:hover {
@@ -70,7 +69,7 @@ html, body {
 }
 
 .tax-toggle {
-    margin-left: auto; /* Pushes the toggle to the right */
+    margin-left: auto;
     flex-shrink: 0;
     padding: 0.5rem 1rem;
     background-color: #f0f0f0;
@@ -78,20 +77,20 @@ html, body {
     font-size: 0.9rem;
 }
 
-.tax-info { /* From your home.ejs */
-    display: none; /* Default hidden */
+.tax-info {
+    display: none;
 }
 
 
-/* --- Card & Listing styles (for both home page listings and show page card) --- */
-.card { /* Applies to all cards including home listings */
+/* --- Card & Listing styles --- */
+.card {
     border: none;
-    margin-bottom: 2rem; /* Space below each card */
+    margin-bottom: 2rem;
 }
 
 .card-img-top {
     border-radius: 1rem;
-    height: 20rem; /* Fixed height for listing cards on homepage and show page */
+    height: 20rem;
     object-fit: cover;
 }
 
@@ -99,7 +98,7 @@ html, body {
     text-decoration: none;
 }
 
-.card-img-overlay { /* Your existing overlay style */
+.card-img-overlay {
     opacity: 0;
 }
 
@@ -108,18 +107,7 @@ html, body {
     background-color: white;
 }
 
-/* --- Show Page Specific Overrides/Adjustments --- */
-/* If you want the image on the show page to be different from home page listings,
-   you need a more specific class for it. Currently, .listing-img below will apply to it. */
 
-/* .listing-img (from show.ejs context) */
-/* This specific class for the main image on the show.ejs page */
-/* Re-applied global .card-img-top for consistency and removed specific width rules from here */
-/* If you still want a different size for the show page image specifically,
-   you'd target .show-listing-card .card-img-top */
-
-
-/* Styles for the buttons on show.ejs */
 .edit-btn, .delete-btn {
     background-color: #fe424d;
     border: none;
@@ -129,7 +117,7 @@ html, body {
     background-color: #343a40;
 }
 
-.show-body { /* Keep the body styling for show page card */
+.show-body {
     padding-right: 0%;
     text-align: left;
 }
@@ -146,7 +134,7 @@ html, body {
 #map {
     height: 300px;
     width: 100%;
-    border-radius: 0.5rem; /* Ensure consistent border-radius */
+    border-radius: 0.5rem;
 }
 
 /* --- Navbar Search Bar Styling --- */
@@ -177,30 +165,22 @@ html, body {
     outline: none;
 }
 
+/* Mobile styles below 768px */
 @media (max-width: 767.98px) {
     .navbar .container-fluid {
+        display: flex; /* Essential for flexible arrangement */
+        justify-content: space-between; /* Distribute items with space between */
+        align-items: center; /* Vertically align items */
         padding-right: 15px;
         padding-left: 15px;
     }
-    /* This .container-fluid rule below seems redundant and potentially problematic if it's not specific to .navbar */
-    /* .container-fluid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    } */
-    .search-container-mobile {
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 1;
-        max-width: 220px;
-        margin: 0 0.5rem;
+
+    .search-container-mobile { /* This is your mobile search form with input-group */
+        flex-grow: 1; /* Allow it to take available space */
+        margin: 0 0.5rem; /* Add horizontal spacing */
+        max-width: 220px; /* Adjust if needed, based on screenshot this looks good */
     }
-    .search-form-desktop-wrapper {
-        display: none !important;
-    }
-    .navbar-toggler {
-        margin-left: 0;
-    }
+
     .search-container-mobile .form-control {
         border-top-left-radius: 2rem;
         border-bottom-left-radius: 2rem;
@@ -213,52 +193,66 @@ html, body {
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
         padding: 0.4rem 0.8rem;
-        width: 40px;
-        display: flex;
+        width: 40px; /* Keep button compact */
+        display: flex; /* For centering the icon */
         justify-content: center;
         align-items: center;
     }
+
+    .navbar-toggler {
+        margin-left: 0.5rem; /* Space between search bar and toggler */
+    }
+
     .navbar-collapse {
         position: absolute;
-        top: 100%;
-        right: 15px;
-        left: auto;
-        width: auto;
-        min-width: 200px;
+        top: 100%; /* Position right below the navbar */
+        right: 0; /* Align to the right edge */
+        left: auto; /* Remove left positioning */
+        width: 100%; /* Important: Make dropdown span full width */
+        min-width: 200px; /* Ensure a minimum width for readability */
         background-color: var(--bs-body-bg, white);
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        z-index: 1020;
-        flex-direction: column;
-        align-items: flex-start;
+        z-index: 1020; /* Ensure it's above other content */
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: flex-start; /* Align text to the left */
         text-align: left;
-        padding: 0.5rem 0;
+        padding: 0.5rem 0; /* Vertical padding for the dropdown content */
     }
     .navbar-collapse .navbar-nav {
-        width: 100%;
-        padding: 0;
+        width: 100%; /* Make nav list take full width of dropdown */
+        padding: 0; /* Remove default list padding */
     }
     .navbar-collapse .nav-item {
-        margin: 0;
-        width: 100%;
+        margin: 0; /* Remove default item margins */
+        width: 100%; /* Make each nav item span full width */
     }
     .navbar-collapse .nav-link {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem; /* Ensure ample padding for clickable area */
+    }
+
+    /* Hide desktop specific elements on mobile */
+    .search-form-desktop-wrapper,
+    .d-none.d-md-block { /* This targets the empty ul specifically if it remains */
+        display: none !important;
     }
 }
 
+/* Desktop styles from 768px and up */
 @media (min-width: 768px) {
-    .search-container-mobile {
+    .search-container-mobile { /* Hide mobile search on desktop */
         display: none !important;
     }
-    .search-form-desktop-wrapper {
+
+    .desktop-search-wrapper { /* Ensure this is visible and acts as flex container on desktop */
         display: flex !important;
-        flex-grow: 1;
-        justify-content: center;
+        flex-grow: 1; /* Allow it to take available space */
+        justify-content: center; /* Center the search bar */
         align-items: center;
         padding: 0 1rem;
     }
+
     .search-form-desktop {
         max-width: 400px;
         width: 100%;
@@ -279,9 +273,10 @@ html, body {
         border-bottom-right-radius: 2rem;
         flex-shrink: 0;
     }
+
     .navbar-nav {
-        flex-direction: row;
-        margin-left: auto !important;
+        flex-direction: row; /* Ensure nav items are horizontal on desktop */
+        margin-left: auto !important; /* Push nav items to the far right */
         width: auto;
         padding: 0;
     }
@@ -294,48 +289,41 @@ html, body {
     }
 }
 
-/* --- Footer Specific Styles (adjusted for full width content and horizontal spread) --- */
+/* --- Footer Specific Styles --- */
 .footer {
-    background-color: #f8f9fa; /* From previous correct version */
+    background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
     padding: 1.5rem 0;
     color: #6c757d;
-    width: 100%; /* Ensures footer background spans full width */
-    margin-top: auto;
+    width: 100%;
+    margin-top: auto; /* Pushes footer to the bottom */
 }
 
 .f-info {
-    /* d-flex, justify-content-center, align-items-center, flex-wrap are now applied directly in footer.ejs */
-    /* Remove padding: 0 1rem; from here, let the content stretch with justify-content-space-evenly from footer.ejs */
-    text-align: center; /* Still useful for individual text elements */
-    min-height: 8rem; /* From your home.ejs */
-    background-color: #ebebeb; /* From your home.ejs */
-    padding: 1rem 0; /* Vertical padding from home.ejs, horizontal handled by footer.ejs's container-fluid */
+    text-align: center;
+    min-height: 8rem;
+    background-color: #ebebeb;
+    padding: 1rem 0;
 }
 
 .f-info-links a {
     text-decoration: none;
-    color: #222222; /* From your home.ejs */
-    margin-right: 10px; /* From your home.ejs */
+    color: #222222;
+    margin-right: 10px;
 }
 
 .f-info-links a:hover {
     text-decoration: underline;
 }
 
-/* f-info-links, f-info-socials, f-info-brand from home.ejs */
-.f-info-links,
-.f-info-socials,
+.f-info-links,.f-info-socials,
 .f-info-brand {
-    /* display: flex; Removed, handled by Bootstrap classes in footer.ejs */
-    /* justify-content: center; Removed, handled by Bootstrap classes in footer.ejs */
-    /* align-items: center; Removed, handled by Bootstrap classes in footer.ejs */
-    margin: 0.5rem 1rem; /* From your home.ejs */
+    margin: 0.5rem 1rem;
 }
 
 .f-info-socials i {
-    font-size: 1.5rem; /* From your home.ejs */
-    margin-right: 1.5rem; /* From your home.ejs */
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 @media (max-width: 767.98px) {
@@ -347,13 +335,13 @@ html, body {
     }
 }
 
-/* --- General Link Styling (addressed red line on hover) --- */
+/* --- General Link Styling --- */
 a {
     color: inherit;
-    text-decoration: none; /* No underline by default */
+    text-decoration: none;
 }
 
 a:hover {
-    color: #fe424d; /* Your desired hover color */
-    text-decoration: none; /* CRUCIAL: REMOVE UNDERLINE ON HOVER */
+    color: #fe424d;
+    text-decoration: none;
 }

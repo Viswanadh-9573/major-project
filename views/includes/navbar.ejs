@@ -1,25 +1,23 @@
-
 <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top border-bottom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/listings">
+        <a class="navbar-brand order-0" href="/listings">
             <i class="fa-solid fa-map-location-dot" style="color: #fe424d;"></i>
         </a>
 
-        <form class="d-flex input-group search-container-mobile" method="get" action="/listings/q">
+        <form class="d-flex input-group search-container-mobile order-1 d-md-none" method="get" action="/listings/q">
             <input class="form-control search-input" type="search" name="search-result" placeholder="Search" aria-label="Search">
             <button class="btn btn-search" type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i> </button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </form>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        <button class="navbar-toggler order-2 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0 d-none d-md-block"></ul>
-
-            <div class="search-form-desktop-wrapper d-none d-md-flex">
+        <div class="collapse navbar-collapse order-3 order-md-2" id="navbarCollapse">
+            <div class="search-form-desktop-wrapper d-none d-md-flex ms-auto order-md-1">
                 <form class="d-flex input-group search-form-desktop" method="get" action="/listings/q">
                     <input class="form-control search-input" type="search" name="search-result" placeholder="Search" aria-label="Search">
                     <button class="btn btn-search" type="submit">Search</button>
